@@ -27,10 +27,18 @@ function setupClickListeners() {
   }); 
 }
 
-function getKoalas(){
+function getKoalas(){ //Danny
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
-  
+  $.ajax({
+    type: 'GET',
+    url: '/koalas'
+  }).then(function(response) {
+    console.log('GET /koalas', response);
+    appendKoalas(response);
+  }).catch(function(error) {
+    console.log('error in GET', error);
+  });
 } // end getKoalas
 
 function saveKoala( newKoala ){
