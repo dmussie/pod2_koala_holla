@@ -13,18 +13,17 @@ function setupClickListeners() {
   $( '#addButton' ).on( 'click', function(){
     console.log( 'in addButton on click' );
     // get user input and put in an object
-    // NOT WORKING YET :(
-    // using a test object
     let koalaToSend = {
-      name: 'testName',
-      age: 'testName',
-      gender: 'testName',
-      readyForTransfer: 'testName',
-      notes: 'testName',
+      name: $('#nameIn').val(),
+      age: $('#ageIn').val(),
+      gender: $('#genderIn').val(),
+      readyForTransfer: $('#readyForTransferIn').val(),
+      notes: $('#notesIn').val(),
     };
+    
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
-  }); 
+  });
 }
 
 function getKoalas(){
@@ -33,8 +32,20 @@ function getKoalas(){
   
 } // end getKoalas
 
+//take the data from setUpClickListeners and sent it to the server
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
-  // ajax call to server to get koalas
- 
+    // ajax call to server to get koalas
+  $.ajax({
+    type: 'POST',
+    url: '/koalas',
+    data: newKoala, //post koala object
+    }).then(function(response) { //log response from server
+      console.log('Response from server.', response);
+      getKoalas();
+    }).catch(function(error) {
+      console.log('Error in POST', error)
+      alert('Unable to add a koala. Please try again later.');
+    });
 }
+ 
