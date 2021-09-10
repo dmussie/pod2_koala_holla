@@ -10,6 +10,7 @@ $( document ).ready( function(){
 }); // end doc ready
 
 function setupClickListeners() {
+  $('#viewKoalas').on('click', '.delete-button', deleteKoala)
   $( '#addButton' ).on( 'click', function(){
     console.log( 'in addButton on click' );
     // get user input and put in an object
@@ -56,11 +57,12 @@ function appendKoalas(koalas) {
       <td>${koalas[i].gender}</td>
       <td>${koalas[i].ready_to_transfer}</td>
       <td>${koalas[i].notes}</td>
+      <td><button class="delete-button" data-id=${koalas[i].id}>Delete</button>
     </tr>`)
   };
 };
 
-//take the data from setUpClickListeners and sent it to the server
+//take the data from setUpClickListeners and send it to the server
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
     // ajax call to server to get koalas
@@ -80,7 +82,6 @@ function saveKoala( newKoala ){
 //send the ID to the server then refresh the DOM or catch error
 function deleteKoala() {
   console.log('in deleteKoala', $(this).data('id'));
-
   $.ajax({
     method: 'DELETE',
     url: `/koalas/${$(this).data('id')}`
