@@ -17,7 +17,7 @@ function setupClickListeners() {
       name: $('#nameIn').val(),
       gender: $('#genderIn').val(),
       age: $('#ageIn').val(),
-      ready_to_transfer: $('#readyForTransferIn').val(),
+      ready_to_transfer: $('#readyToTransferIn').val(),
       notes: $('#notesIn').val(),
     };
     
