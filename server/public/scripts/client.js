@@ -29,8 +29,9 @@ function setupClickListeners() {
     $('#notesIn').val('');
     
     // call saveKoala with the new obejct
-    saveKoala( koalaToSend );
+    saveKoala( koalaToSend );  
   });
+  $('#viewKoalas').on('click', '.transfer-button', setToReady);
 }
 
 function getKoalas(){ //Danny
@@ -51,17 +52,38 @@ function getKoalas(){ //Danny
 function appendKoalas(koalas) {
   $('#viewKoalas').empty();
   for (let i = 0; i < koalas.length; i++) {
-    $('#viewKoalas').append(`
-    <tr>
-      <td>${koalas[i].name}</td>
-      <td>${koalas[i].age}</td>
-      <td>${koalas[i].gender}</td>
-      <td>${koalas[i].ready_to_transfer}</td>
-      <td>${koalas[i].notes}</td>
-      <td><button class="delete-button" data-id=${koalas[i].id}>Delete</button>
-    </tr>`)
-  };
-};
+    if (koalas[i].ready_to_transfer === false ) {
+      $('#viewKoalas').append(`
+          <tr>
+            <td>${koalas[i].name}</td>
+            <td>${koalas[i].age}</td>
+            <td>${koalas[i].gender}</td>
+            <td>${koalas[i].ready_to_transfer}</td>
+            <td>${koalas[i].notes}</td>
+            <td>
+              <button data-id="${koalas[i].id}" class="transfer-button">Ready for Transfer</button>
+            </td>
+            <td>
+            <button class="delete-button" data-id=${koalas[i].id}>Delete</button>
+            </td>
+          </tr>
+        `);
+      } else {
+        $('#viewKoalas').append(`
+          <tr>
+            <td>${koalas[i].name}</td>
+            <td>${koalas[i].age}</td>
+            <td>${koalas[i].gender}</td>
+            <td>${koalas[i].ready_to_transfer}</td>
+            <td>${koalas[i].notes}</td>
+            <td>
+            <button class="delete-button" data-id=${koalas[i].id}>Delete</button>
+            </td>
+          </tr>
+        `);
+      }
+    } 
+}
 
 //take the data from setUpClickListeners and send it to the server
 function saveKoala( newKoala ){
