@@ -20,6 +20,12 @@ function setupClickListeners() {
       ready_to_transfer: $('#readyToTransferIn').val(),
       notes: $('#notesIn').val(),
     };
+    //clear inputs 
+    $('#nameIn').val('');
+    $('#genderIn').val('');
+    $('#ageIn').val('');
+    $('#readyToTransferIn').val('');
+    $('#notesIn').val('');
     
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
@@ -70,4 +76,6 @@ function saveKoala( newKoala ){
       alert('Unable to add a koala. Please try again later.');
     });
 }
+
+
  
