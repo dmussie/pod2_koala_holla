@@ -48,6 +48,7 @@ function getKoalas(){ //Danny
 
 //append GET response to the DOM
 function appendKoalas(koalas) {
+  $('#viewKoalas').empty();
   for (let i = 0; i < koalas.length; i++) {
     $('#viewKoalas').append(`
     <tr>
