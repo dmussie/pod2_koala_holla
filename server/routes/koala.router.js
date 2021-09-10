@@ -27,11 +27,21 @@ koalaRouter.post('/', (req, res) => {
                         ("name", "gender", "age", "ready_to_transfer", "notes")
                         VALUES
                         ($1, $2, $3, $4, $5);
-
-    `;
+    `; // Passing req.body values through pg
+    // anticipating receiving an object from the client POST req
     pool.query(queryText, [
         newKoala.name,
-    ]).then().catch();
+        newKoala.gender,
+        newKoala.age,
+        newKoala.ready_to_transfer,
+        newKoala.notes
+    ]).then((result) => { // sending success back to client
+        console.log('POST new koala success!');
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('Error in POST', error);
+        res.sendStatus(500);
+    });
 });
 
 // PUT
