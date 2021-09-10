@@ -56,9 +56,9 @@ function appendKoalas(koalas) {
       <td>${koalas[i].gender}</td>
       <td>${koalas[i].ready_to_transfer}</td>
       <td>${koalas[i].notes}</td>
-    </tr>`)
-  };
-};
+    </tr>`);
+  }
+}
 
 //take the data from setUpClickListeners and sent it to the server
 function saveKoala( newKoala ){
@@ -77,5 +77,17 @@ function saveKoala( newKoala ){
     });
 }
 
-
+function setToReady() {
+  const koalaId = $(this).data('id');
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaId}`,
+  }).then(function(response) {
+    console.log('Set to ready!');
+    getKoalas();
+  }).catch(function(error) {
+    alert('Something went wrong!');
+    console.log('Error in PUT', error);
+  });
+}
  
