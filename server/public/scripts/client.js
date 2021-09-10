@@ -33,12 +33,6 @@ function setupClickListeners() {
   $('#viewKoalas').on('click', '.transfer-button', setToReady);
 }
 
-/**
- * @params no input, on click
- * 
- * @output no output, 
- */
-
 function getKoalas(){ //Danny
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
@@ -58,16 +52,19 @@ function appendKoalas(koalas) {
   $('#viewKoalas').empty();
   for (let i = 0; i < koalas.length; i++) {
     $('#viewKoalas').append(`
-    <tr>
-      <td>${koalas[i].name}</td>
-      <td>${koalas[i].age}</td>
-      <td>${koalas[i].gender}</td>
-      <td>${koalas[i].ready_to_transfer}</td>
-      <td>${koalas[i].notes}</td>
-      <td><button data-id="${koalas[i].id}" class="transfer-button">Ready for Transfer</button></td>
-    </tr>`)
-  };
-};
+      <tr>
+        <td>${koalas[i].name}</td>
+        <td>${koalas[i].age}</td>
+        <td>${koalas[i].gender}</td>
+        <td>${koalas[i].ready_to_transfer}</td>
+        <td>${koalas[i].notes}</td>
+        `);
+    if (koalas[i].ready_to_transfer === false ) {
+      $('#viewKoalas').append(`<td><button data-id="${koalas[i].id}" class="transfer-button">Ready for Transfer</button></td>
+    </tr>`);
+    }
+  }
+}
 
 //take the data from setUpClickListeners and sent it to the server
 function saveKoala( newKoala ){
@@ -86,5 +83,17 @@ function saveKoala( newKoala ){
     });
 }
 
-
+function setToReady() {
+  const koalaId = $(this).data('id');
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaId}`,
+  }).then(function(response) {
+    console.log('Set to ready!');
+    getKoalas();
+  }).catch(function(error) {
+    alert('Something went wrong!');
+    console.log('Error in PUT', error);
+  });
+}
  
