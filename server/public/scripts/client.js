@@ -35,7 +35,7 @@ function getKoalas(){ //Danny
     url: '/koalas'
   }).then(function(response) {
     console.log('GET /koalas', response);
-    appendKoalas(response);
+    console.log('FIX ME: appendKoalas(response)');
   }).catch(function(error) {
     console.log('error in GET', error);
   });
