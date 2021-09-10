@@ -9,7 +9,7 @@ const config = {
     idleTimeoutMillis: 30000 
   };
 
-//for windows users with pgAdmin4
+// for windows users with pgAdmin4
 // const config = {
 //   user: 'postgres', // Add db user
 //   host: 'localhost',
