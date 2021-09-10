@@ -77,5 +77,17 @@ function saveKoala( newKoala ){
     });
 }
 
-
+function setToReady() {
+  const koalaId = $(this).data('id');
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaId}`,
+  }).then(function(response) {
+    console.log('Set to ready!');
+    getKoalas();
+  }).catch(function(error) {
+    alert('Something went wrong!');
+    console.log('Error in PUT', error);
+  })
+};
  
