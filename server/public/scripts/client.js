@@ -51,19 +51,31 @@ function getKoalas(){ //Danny
 function appendKoalas(koalas) {
   $('#viewKoalas').empty();
   for (let i = 0; i < koalas.length; i++) {
-    $('#viewKoalas').append(`
-      <tr>
-        <td>${koalas[i].name}</td>
-        <td>${koalas[i].age}</td>
-        <td>${koalas[i].gender}</td>
-        <td>${koalas[i].ready_to_transfer}</td>
-        <td>${koalas[i].notes}</td>
-        `);
     if (koalas[i].ready_to_transfer === false ) {
-      $('#viewKoalas').append(`<td><button data-id="${koalas[i].id}" class="transfer-button">Ready for Transfer</button></td>
-    </tr>`);
-    }
-  }
+      $('#viewKoalas').append(`
+          <tr>
+            <td>${koalas[i].name}</td>
+            <td>${koalas[i].age}</td>
+            <td>${koalas[i].gender}</td>
+            <td>${koalas[i].ready_to_transfer}</td>
+            <td>${koalas[i].notes}</td>
+            <td>
+              <button data-id="${koalas[i].id}" class="transfer-button">Ready for Transfer</button>
+            </td>
+          </tr>
+        `);
+      } else {
+        $('#viewKoalas').append(`
+          <tr>
+            <td>${koalas[i].name}</td>
+            <td>${koalas[i].age}</td>
+            <td>${koalas[i].gender}</td>
+            <td>${koalas[i].ready_to_transfer}</td>
+            <td>${koalas[i].notes}</td>
+          </tr>
+        `);
+      }
+    } 
 }
 
 //take the data from setUpClickListeners and sent it to the server
