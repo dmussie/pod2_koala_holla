@@ -15,9 +15,9 @@ function setupClickListeners() {
     // get user input and put in an object
     let koalaToSend = {
       name: $('#nameIn').val(),
-      age: $('#ageIn').val(),
       gender: $('#genderIn').val(),
-      readyForTransfer: $('#readyForTransferIn').val(),
+      age: $('#ageIn').val(),
+      ready_to_transfer: $('#readyForTransferIn').val(),
       notes: $('#notesIn').val(),
     };
     
