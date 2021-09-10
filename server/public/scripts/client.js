@@ -22,9 +22,16 @@ function setupClickListeners() {
     };
     
     // call saveKoala with the new obejct
-    saveKoala( koalaToSend );
+    saveKoala( koalaToSend );  
   });
+  $('#viewKoalas').on('click', '.transfer-button', setToReady);
 }
+
+/**
+ * @params no input, on click
+ * 
+ * @output no output, 
+ */
 
 function getKoalas(){ //Danny
   console.log( 'in getKoalas' );
@@ -50,6 +57,7 @@ function appendKoalas(koalas) {
       <td>${koalas[i].gender}</td>
       <td>${koalas[i].ready_to_transfer}</td>
       <td>${koalas[i].notes}</td>
+      <td><button data-id="${koalas[i].id}" class="transfer-button">Ready for Transfer</button></td>
     </tr>`)
   };
 };
