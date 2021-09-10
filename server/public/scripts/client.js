@@ -20,10 +20,15 @@ function setupClickListeners() {
       ready_to_transfer: $('#readyToTransferIn').val(),
       notes: $('#notesIn').val(),
     };
+    //clear inputs 
+    $('#nameIn').val('');
+    $('#genderIn').val('');
+    $('#ageIn').val('');
+    $('#readyToTransferIn').val('');
+    $('#notesIn').val('');
     
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
-    clearKoala(koalaToClear);
   });
 }
 
@@ -58,14 +63,5 @@ function saveKoala( newKoala ){
     });
 }
 
-function clearKoala(koalaToClear) {
-  console.log('in clearKoala');
-  const koalaToClear = {
-    name: $('#nameIn').val(''),
-      gender: $('#genderIn').val(''),
-      age: $('#ageIn').val(''),
-      ready_to_transfer: $('#readyToTransferIn').val(''),
-      notes: $('#notesIn').val(''),
-  }
-};
+
  
