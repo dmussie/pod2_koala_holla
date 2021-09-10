@@ -26,10 +26,18 @@ function setupClickListeners() {
   });
 }
 
-function getKoalas(){
+function getKoalas(){ //Danny
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
-  
+  $.ajax({
+    type: 'GET',
+    url: '/koalas'
+  }).then(function(response) {
+    console.log('GET /koalas', response);
+    console.log('FIX ME: appendKoalas(response)');
+  }).catch(function(error) {
+    console.log('error in GET', error);
+  });
 } // end getKoalas
 
 //take the data from setUpClickListeners and sent it to the server
