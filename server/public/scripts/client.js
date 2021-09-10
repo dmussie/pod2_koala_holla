@@ -77,5 +77,22 @@ function saveKoala( newKoala ){
     });
 }
 
+//send the ID to the server then refresh the DOM or catch error
+function deleteKoala() {
+  console.log('in deleteKoala', $(this).data('id'));
+
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${$(this).data('id')}`
+  })
+    .then(function (response) {
+      console.log('Deleted it!');
+      getKoalas();
+    })
+    .catch(function (error) {
+      alert('Error on delete.', error);
+    })
+};
+
 
  

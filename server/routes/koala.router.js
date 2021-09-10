@@ -61,19 +61,5 @@ koalaRouter.put('/:id', (req, res) => {
 
 
 // DELETE
-koalaRouter.delete('/:id', (req, res) => {
-    let reqId = req.params.id;
-    console.log('DELETE request for id', reqId);
-    let sqlText = 'DELETE FROM "koalas" WHERE "id" = $1;'
-    pool.query(sqlText, [reqId])
-        .then((result) => {
-            console.log('Koala deleted');
-            res.sendStatus(200);
-        })
-        .catch((error) => {
-            console.log(`Error making database query ${sqlText}`, error);
-            res.sendStatus(500);
-        })
-});
 
 module.exports = koalaRouter;
