@@ -23,6 +23,7 @@ function setupClickListeners() {
     
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
+    clearKoala(koalaToClear);
   });
 }
 
@@ -56,4 +57,15 @@ function saveKoala( newKoala ){
       alert('Unable to add a koala. Please try again later.');
     });
 }
+
+function clearKoala(koalaToClear) {
+  console.log('in clearKoala');
+  const koalaToClear = {
+    name: $('#nameIn').val(''),
+      gender: $('#genderIn').val(''),
+      age: $('#ageIn').val(''),
+      ready_to_transfer: $('#readyToTransferIn').val(''),
+      notes: $('#notesIn').val(''),
+  }
+};
  
