@@ -40,11 +40,25 @@ function getKoalas(){ //Danny
     url: '/koalas'
   }).then(function(response) {
     console.log('GET /koalas', response);
-    console.log('FIX ME: appendKoalas(response)');
+    appendKoalas(response);
   }).catch(function(error) {
     console.log('error in GET', error);
   });
 } // end getKoalas
+
+//append GET response to the DOM
+function appendKoalas(koalas) {
+  for (let i = 0; i < koalas.length; i++) {
+    $('#viewKoalas').append(`
+    <tr>
+      <td>${koalas[i].name}</td>
+      <td>${koalas[i].age}</td>
+      <td>${koalas[i].gender}</td>
+      <td>${koalas[i].ready_to_transfer}</td>
+      <td>${koalas[i].notes}</td>
+    </tr>`)
+  };
+};
 
 //take the data from setUpClickListeners and sent it to the server
 function saveKoala( newKoala ){
